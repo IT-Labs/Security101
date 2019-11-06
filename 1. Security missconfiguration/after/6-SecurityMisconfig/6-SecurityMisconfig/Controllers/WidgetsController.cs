@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -22,7 +23,7 @@ namespace _6_SecurityMisconfig.Controllers
             var typeId = Request.QueryString["TypeId"];
             var typeIdInt = string.IsNullOrEmpty(typeId) ? 1 : Int64.Parse(typeId);
 
-            const string connString = "Data Source=ITLabs-SQL2017;Initial Catalog=6-SecurityMisconfig;User Id=6-SecurityMisconfig-User;Password=qc9yFUrYyWiLx80ZFlgj";
+            string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             const string sqlString = "SELECT * FROM Widget WHERE CategoryId = @CategoryId AND TypeId = @TypeId";
             using (var conn = new SqlConnection(connString))
             {
