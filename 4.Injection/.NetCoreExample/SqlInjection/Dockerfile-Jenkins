@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim
+
+MAINTAINER Milan Gjorchevski
+
+ARG source
+WORKDIR /app
+EXPOSE 80
+COPY ${source:-obj/Docker/publish} .
+ENTRYPOINT ["dotnet", "SqlInjection.dll"]
