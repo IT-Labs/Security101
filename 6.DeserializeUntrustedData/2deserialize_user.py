@@ -9,7 +9,7 @@ serialized = pickle.dumps(user)
 filename = 'serialized.native'
 
 
-with open(filename, 'w') as file_object:
+with open(filename, 'wb') as file_object:
     file_object.write(serialized)
 
 with open(filename) as file_object:

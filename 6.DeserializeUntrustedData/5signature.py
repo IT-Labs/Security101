@@ -1,4 +1,4 @@
-import yaml
+import pickle
 import hashlib
 import hmac
 
@@ -9,7 +9,7 @@ class MyUser(object):
 # Secret key that is only given to trusted app
 KEY= 'secret' # in real scenario, it should not be in the file
 user = MyUser('Peter')
-serialized = yaml.dump(user)
+serialized = pickle.dumps(user)
 # Calculate signature over serialized data
 signature = hmac.new(KEY, serialized, hashlib.sha256).hexdigest()
 # Calculate length of signature (constant)
@@ -33,7 +33,7 @@ try:
         # Calculate and compare signatures
         computed_signature = hmac.new(KEY, data, hashlib.sha256).hexdigest()
         if hmac.compare_digest(read_signature, computed_signature): 
-            deserialized = yaml.load(data)
+            deserialized = pickle.loads(data)
             print(deserialized.name)
 except:
     print('Error during deserialization')
