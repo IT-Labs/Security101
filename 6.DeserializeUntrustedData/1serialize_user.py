@@ -8,3 +8,6 @@ user = MyUser('Peter')
 serialized = pickle.dumps(user)
 filename = 'serialized.native'
 
+with open(filename, 'wb') as file_object:
+    file_object.write(serialized)
+
