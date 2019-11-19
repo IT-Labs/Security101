@@ -35,7 +35,7 @@ namespace AspNetSecurity_m1
         {
             app.UseDeveloperExceptionPage();
 
-            //if (!env.IsDevelopment())
+            if (!env.IsDevelopment())
                 app.UseHsts(c => c.MaxAge(days: 365).IncludeSubdomains().Preload());
 
             app.UseStaticFiles();

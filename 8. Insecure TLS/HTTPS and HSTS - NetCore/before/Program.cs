@@ -12,6 +12,9 @@ namespace AspNetSecurity_NoSecurity
         }
         public static IWebHost BuildWebHost(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseIISIntegration()
         .UseUrls("http://localhost:5001")
         .UseStartup<Startup>()
         .Build();
