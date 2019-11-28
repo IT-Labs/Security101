@@ -6,7 +6,7 @@ class MyUser(object):
         
 user = MyUser('Peter')
 serialized = pickle.dumps(user)
-filename = 'serialized.corrupt'
+filename = 'serialized.untrusted'
 
 
 with open(filename, 'w') as file_object:
@@ -16,8 +16,10 @@ filename= 'serialized.native'
 
 with open(filename) as file_object:
     raw_data = file_object.read()
-    
-deserialized = pickle.loads(raw_data)
 
-print(deserialized.name)
+try:    
+    deserialized = pickle.loads(raw_data)
+    print(deserialized.name)
+except:
+    print('Error during deseriazlization')
     
